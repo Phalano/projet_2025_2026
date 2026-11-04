@@ -9,7 +9,7 @@ void AfficherMenu(void){
     printf("    1-Lancer le jeu            \n");
     printf("    2-Score                    \n");
     printf("    3-Difficile                \n");
-    printf("    4-Lorem Ipsum              \n");
+    printf("    4-Easter Egg               \n");
 }
 
 int main(void){
