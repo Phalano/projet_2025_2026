@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "taille_serpent.h"
+#include "serpent.h"
 
 Serpent initialiser_serpent(int x_depart, int y_depart){
     Serpent nouv = (Serpent)malloc(sizeof(Cellule)); // alloue la mémoire pour le premier morceau du serpent
