@@ -11,6 +11,7 @@ typedef struct Cellule {
 
 Serpent initialiser_serpent(int x_depart, int y_depart);
 void grandir_serpent(Serpent* tete, char nouvelle_lettre, int nouveau_x, int nouveau_y);
+int verifier_collision(Serpent tete, int nouv_x, int nouv_y);
 int calculer_taille(Serpent tete);
 void liberer_serpent(Serpent tete);
 
