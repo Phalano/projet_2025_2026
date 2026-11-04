@@ -2,10 +2,10 @@
 #define TAILLE_SERPENT_H
 #include <stdbool.h>
 
-typedef struct Cellule{
+typedef struct Cellule {
     char lettre;
-    int x;  //position x sur la map
-    int y;  //position y sur la map
+    int x; //position x sur la map
+    int y; //position y sur la map
     struct Cellule* suiv;
 } Cellule, *Serpent;
 
