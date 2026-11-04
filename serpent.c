@@ -31,6 +31,17 @@ void grandir_serpent(Serpent* tete, char nouvelle_lettre, int nouveau_x, int nou
     *tete = nouveau_morceau; // Met à jour la variable de tête pour pointer sur le nouveau morceau
 }
 
+int verifier_collision(Serpent tete, int nouv_x, int nouv_y){
+    Serpent actuel = tete;
+    while (actuel != NULL){
+        if(actuel->x == nouv_x && actuel->y == nouv_y){
+            return 1;
+        }
+        actuel = actuel->suiv;
+    }
+    return 0;
+}
+
 // Calcule le nombre total de morceau du corp du serpent
 int calculer_taille(Serpent tete){
     int taille = 0; 
