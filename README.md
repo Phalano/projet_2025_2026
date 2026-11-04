@@ -4,5 +4,6 @@ Projet de jeu snake en programmation 3
 
 Matthys : Affichage et menu, Commencement de l'étape 1 également.
 
-Dyclane : Taille serpent
-Philéas : Déplacement
+Dyclane : Taille serpent, Serpent
+Philéas : Déplacement, Map
+
