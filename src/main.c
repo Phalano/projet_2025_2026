@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "serpent.h"
-int main() {
+int main(int argc, char *argv[]) {
     printf("=== Test du Serpent ===\n\n");
     // 1. On initialise le serpent en haut à gauche (coordonnées x=0, y=0)
     Serpent mon_serpent = initialiser_serpent(0, 0);
