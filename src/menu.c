@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Cette  procédure affiche le menu par des printf()
 void AfficherMenu(void){
     printf("|| ========================= ||\n");
     printf("             SNAKE             \n");
