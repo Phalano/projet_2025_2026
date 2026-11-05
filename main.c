@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "serpent.h"
 int main() {
-    printf("=== Test du Serpent (Étape 2) ===\n\n");
+    printf("=== Test du Serpent ===\n\n");
     // 1. On initialise le serpent en haut à gauche (coordonnées x=0, y=0)
     Serpent mon_serpent = initialiser_serpent(0, 0);
     
