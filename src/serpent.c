@@ -36,12 +36,27 @@ bool grandir_serpent(Serpent* tete, char nouvelle_lettre, int nouveau_x, int nou
     return true;
 }
 
-int verifier_collision(Serpent tete, int nouv_x, int nouv_y){
+int verifier_collision(Serpent tete, int nouv_x, int nouv_y, const matrice* carte){
+    if (carte == NULL || carte->elt == NULL){ // Vérifie si la carte est valide avant de vérifier la collision
+        fprintf(stderr, "Erreur : carte invalide pour vérifier la collision.\n");
+        return 1;
+    }
 
+    if (nouv_x < 0 || nouv_x >= carte->col ||
+        nouv_y < 0 || nouv_y >= carte->lign){// Vérifie si les coordonnées du nouveau morceau sont en dehors des limites de la carte
+        fprintf(stderr, "Erreur : nouvelles coordonnées en dehors des limites de la carte.\n");
+        return 1;
+    }
 
-    Serpent actuel = tete;
+    if (matrice_get(carte, nouv_y, nouv_x) == '#'){// Vérifie si le nouveau morceau entre en collision avec un mur sur la carte
+        fprintf(stderr, "Erreur : collision avec un mur.\n");
+        return 1;
+    }
+
+    Serpent actuel = tete;// 'actuel' pointera sur le même morceau que 'tete' et permet le déplacement de morceau en morceau
     while (actuel != NULL){
         if(actuel->x == nouv_x && actuel->y == nouv_y){// Vérifie si les coordonnées du nouveau morceau correspondent à celles d'un morceau existant
+            fprintf(stderr, "Erreur : collision avec le corps du serpent.\n");
             return 1;
         }
         actuel = actuel->suiv;// Passe au morceau suivant du serpent
