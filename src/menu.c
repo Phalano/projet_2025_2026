@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "menu.h"
+#include "jeu.h"
 
 // Cette  procédure affiche le menu par des printf()
 void AfficherMenu(void){
@@ -38,22 +38,9 @@ int InputJoueur(void){
 
 }
 
-void LancerJeu(void){
-}
 
-void AfficherScore(void){
-}
 
-void Difficulte(void){
-}
 
-void EasterEgg(void){
-}
-
-int main(void){
-    AfficherMenu();
-    return EXIT_SUCCESS;
-}
 
 
 
