@@ -3,4 +3,6 @@
 #include "serpent.h"
 
 
-
+int main(){
+    return 0;
+}
