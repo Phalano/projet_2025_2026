@@ -1,5 +1,5 @@
-#ifndef TAILLE_SERPENT_H
-#define TAILLE_SERPENT_H
+#ifndef SERPENT_H
+#define SERPENT_H
 #include <stdbool.h>
 
 typedef struct Cellule {
@@ -15,4 +15,4 @@ int verifier_collision(Serpent tete, int nouv_x, int nouv_y);
 int calculer_taille(Serpent tete);
 void liberer_serpent(Serpent tete);
 
-#endif // TAILLE_SERPENT_H
+#endif // SERPENT_H
