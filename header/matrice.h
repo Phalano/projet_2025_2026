@@ -10,10 +10,11 @@ typedef struct matrice_{ //definie la structure de données Matrice, pour gerer 
 } matrice;
 
 matrice* matrice_create(int lign, int col);
-void matrice_free(matrice * col);
-void matrice_NULL(matrice* col);
+void matrice_free(matrice * r);
+void matrice_null(matrice* r);
 void matrice_set(matrice* col, int i, int j, char x);
 int matrice_get(matrice* col, int i, int j);
+void matrice_print(matrice* m);
 matrice* matrice_file(FILE* fp);
 void matrice_save(matrice* m, FILE* fp);
 
