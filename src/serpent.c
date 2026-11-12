@@ -3,32 +3,37 @@
 #include "serpent.h"
 
 Serpent initialiser_serpent(int x_depart, int y_depart){
-    Serpent nouv = (Serpent)malloc(sizeof(Cellule)); // alloue la mémoire pour le premier morceau du serpent
+    Serpent nouv = malloc(sizeof *nouv);
     if (nouv == NULL){
         fprintf(stderr,"Erreur d'allocation mémoire du serpent.\n");
-        exit(EXIT_FAILURE); // Arrête immédiatement le programme et signale un échec au système
+        return NULL;
     }
-    nouv->lettre = 'z'; //assigne la lettre 'z' 
-    nouv->x = x_depart; //assigne la coordonnée x de départ 
-    nouv->y = y_depart; //assigne la coordonnée y de départ
-    nouv->suiv = NULL; //initialise le pointeur suivant à NULL car c'est le seul morceau
-    return nouv;
+    nouv->lettre = 'z';// Initialisation de la lettre du serpent
+    nouv->x = x_depart;// Initialisation de la position x du serpent
+    nouv->y = y_depart;// Initialisation de la position y du serpent
+    nouv->suiv = NULL;
+    return nouv;// Retourne le pointeur vers le nouveau morceau du serpent
 }
 
-void grandir_serpent(Serpent* tete, char nouvelle_lettre, int nouveau_x, int nouveau_y){
-    Serpent nouveau_morceau = (Serpent)malloc(sizeof(Cellule)); // alloue la mémoire pour le nouveau morceau du serpent à ajouter
-    if (nouveau_morceau == NULL){
-        fprintf(stderr,"Erreur d'allocation mémoire pour l'évolution du serpent.\n");
-        exit(EXIT_FAILURE);// Quitte le programme proprement en cas de mémoire saturée
+bool grandir_serpent(Serpent* tete, char nouvelle_lettre, int nouveau_x, int nouveau_y){
+    if (tete == NULL){// Vérifie si le pointeur vers la tête du serpent est valide
+        fprintf(stderr,"Erreur : pointeur vers la tête du serpent invalide.\n");
+        return false;
     }
 
-    nouveau_morceau->lettre = nouvelle_lettre; // ajoute la lettre mangé au nouveau morceau 
-    nouveau_morceau->x = nouveau_x; // ajoute la nouvelle position x au nouveau morceau 
-    nouveau_morceau->y = nouveau_y; // ajoute la nouvelle position y au nouveau morceau 
+    Serpent nouveau_morceau = malloc(sizeof *nouveau_morceau);// Alloue de la mémoire pour le nouveau morceau du serpent
+    if (nouveau_morceau == NULL){
+        fprintf(stderr,"Erreur d'allocation mémoire pour l'évolution du serpent.\n");
+        return false;
+    }
+
+    nouveau_morceau->lettre = nouvelle_lettre;// Assigne la lettre du nouveau morceau du serpent
+    nouveau_morceau->x = nouveau_x;// Assigne la position x du nouveau morceau du serpent
+    nouveau_morceau->y = nouveau_y;// Assigne la position y du nouveau morceau du serpent
     
-    //le nouveau morceau devient la tête et l'ancien la queue
-    nouveau_morceau->suiv = *tete; // Relie le nouveau morceau à l'ancienne tête du serpent
-    *tete = nouveau_morceau; // Met à jour la variable de tête pour pointer sur le nouveau morceau
+    nouveau_morceau->suiv = *tete;// Le nouveau morceau pointe vers l'ancien morceau de tête du serpent
+    *tete = nouveau_morceau;//  Met à jour la tête du serpent pour qu'elle pointe vers le nouveau morceau
+    return true;
 }
 
 int verifier_collision(Serpent tete, int nouv_x, int nouv_y){
@@ -58,12 +63,18 @@ int calculer_taille(Serpent tete){
 }
 
 // libération de la mémoire à la fin d'une partie
-void liberer_serpent(Serpent tete){
-    Serpent actuel = tete;// 'actuel' pointera sur le même morceau que 'tete' et permet le déplacement de morceau en morceau
+void liberer_serpent(Serpent* tete){
+    if (tete == NULL){// Vérifie si le pointeur vers la tête du serpent est valide
+        fprintf(stderr,"Erreur : pointeur vers la tête du serpent invalide.\n");
+        return;
+    }
+
+    Serpent actuel = *tete;// 'actuel' pointera sur le même morceau que 'tete' et permet le déplacement de morceau en morceau
     
     while(actuel != NULL){
-        Serpent supprimer = actuel; //'supprimer' prend le morceau dans 'actuel' 
-        actuel = actuel->suiv; // avance au morceau du serpent
-        free(supprimer); // efface le morceau
+        Serpent supprimer = actuel; // 'supprimer' pointe sur le morceau actuel du serpent qui sera libéré de la mémoire
+        actuel = actuel->suiv; // avance au morceau suivant du serpent
+        free(supprimer); // libère la mémoire du morceau actuel du serpent
     }
+    *tete = NULL;// Met à jour le pointeur vers la tête du serpent pour qu'il pointe vers NULL, indiquant que le serpent a été libéré de la mémoire
 }
