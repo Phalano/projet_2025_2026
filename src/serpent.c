@@ -41,9 +41,8 @@ int verifier_collision(Serpent tete, int nouv_x, int nouv_y, const matrice* cart
         fprintf(stderr, "Erreur : carte invalide pour vérifier la collision.\n");
         return 1;
     }
-
-    if (nouv_x < 0 || nouv_x >= carte->col ||
-        nouv_y < 0 || nouv_y >= carte->lign){// Vérifie si les coordonnées du nouveau morceau sont en dehors des limites de la carte
+    // Vérifie si les nouvelles coordonnées sont en dehors des limites de la carte
+    if (nouv_x < 0 || nouv_x >= carte->col || nouv_y < 0 || nouv_y >= carte->lign){
         fprintf(stderr, "Erreur : nouvelles coordonnées en dehors des limites de la carte.\n");
         return 1;
     }
